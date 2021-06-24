@@ -1,0 +1,21 @@
+Jag  börjar med att hämta element från min html fil, detta görs på rad 1-6 genom att första sätta en konstant till vad elementet ska heta och sedan anänds "document.getElementById" med html elementets id i en parantes efter. 
+Därefter sätts en global variabel "textarea" till "null" eftersom den inte ska innehålla något än. 
+På rad 11 skapas en funktion för att hämta API:n. funktionen skickar in två parametrar,"artist" och "song" som sedan ska skickas in i url:en. Funktionen returnerar url:en som en template string med placeholders som gör att man kan ändra vad som skickas in i urlen. 
+På rad 18 skapas en asynkron funktion som ska hämta lyrics, här skickas också samma parametrar in. Funktionen börjar med "try" som den då försöker köra, try består av if else. Det börjar med "if" och villkoret är om parameterns första eller andra värde (med trim som tar bort white space före och efter) inte innehåller några täcken så kommer det att visas ett meddelande i "result" elementet. 
+Om inte villkoret i if är sant så kommer den köra else. I den körs en fetch för att hämta data från API:t. Först sätts en konstant till url och sedan kallas den förra funktionen "getUrl" och där skickas även två parametrar in. Sedan inväntar funktionen först response från API som är en array med object. Och sedan inväntas data som . Därefter skapas en konstant som tilldelas den första objectet i arrayen med namnet lyrics. Sedan kallas en funktion som ska visa sångerna och där i skickas konstanten som innehåller lyricsen in. 
+Om detta inte skulle fungera, om fetchen exempelvis misslyckas så går funktionen in i catch där error skickas in och då visas ett fel meddelande i resultat. 
+Efter det skapas en funktion som ska visa lyricsen i html elementet lyricsBox. Här skickas lyricsen in. I funktionen är en if sats som först tar bort gammal textarea. Om textarea, som är villkoret, är sann (finns där) så tas den bort. Sedan skapas en ny textarea genom document.createElement. Därefter skickas textarean in i lyricsBox genom appendChild. Därefter så läggs lyricsen in i textarean genom innerText och konstanten displayLyrics. Då skapas en liten textarea med lyricsen så för att göra den rutan större så skapas först en konstant med värdet som är längden av lyricsen. Sedan används "if" med villkoret om längden är större än 130 för att ändra så textarean blir större. 
+Därefter skapas event listener som gör att om man trycker(click) på "button" (som hämtades från html filen) så ska ett event ske. Först används preventdefault för att undvika att sidan laddas om. Så det som sker är att vid klick så kallas funktionen "getLyrics(artist, song)". 
+Sedan finns en function "manage()" som innehåller "if, else" som först kollar om artist värdet OCH sång värdet inte innehåller några täcken så ska knappen som är disabled i html filen bli aktiverad och gå att trycka på. Annars, om den innehåller täcken ska knappen vara fortsatt disabled. 
+
+
+
+
+------Frågor-------
+Hur kan du i din webbläsare se ifall din Javascript-kod lyckas göra en request mot API:et?
+När jag gör en fetch kan jag då console logga "response" för att se ifall jag får svar från API:et i consolen som man öppnar i inspectorn i webbläsaren. I inspectorn går det även under network se ifall man lyckats med requesten. 
+
+Förklara hur man kan debugga Javascript.
+Man kan lägga in "debugger;" i koden på olika ställen och då stannar koden vid debugger och kallar på debugging funktionen om de finns tillgängligt. 
+Annars kan man öppna sin kod i webbläsaren och öppna inspectorn, sedan sources och sedan välja javascript filen och där kan man lägga in breakpoints för att se vad som händer i koden. 
+Sen kan man console logga variabler och funktioner för att se vad som kommer med eller returneras. 
